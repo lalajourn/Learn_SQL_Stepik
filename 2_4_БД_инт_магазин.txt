@@ -43,3 +43,7 @@ ORDER BY Количество DESC, name_city ASC;
 
 Ответ:
 
+SELECT buy_id, date_step_end
+FROM step
+     LEFT JOIN buy_step USING(step_id)
+WHERE buy_step.step_id = 1 AND date_step_end IS NOT NULL;
