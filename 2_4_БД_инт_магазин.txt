@@ -54,3 +54,19 @@ WHERE buy_step.step_id = 1 AND date_step_end IS NOT NULL;
 
 Ответ:
 
+SELECT buy.buy_id, name_client,
+SUM(buy_book.amount * book.price) AS Стоимость
+FROM book
+   INNER JOIN buy_book USING(book_id)
+   INNER JOIN buy USING(buy_id)
+   INNER JOIN client USING(client_id)
+GROUP BY buy.buy_id;
+
+
+*****
+
+6. Вывести номера заказов (buy_id) и названия этапов,  на которых они в данный момент находятся. Если заказ доставлен –  информацию о нем не выводить. Информацию отсортировать по возрастанию buy_id.
+
+Ответ:
+
+
