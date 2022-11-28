@@ -112,3 +112,27 @@ ORDER BY 1;
 
 Ответ:
 
+SELECT name_genre, SUM(buy_book.amount) AS Количество
+FROM genre
+    INNER JOIN book USING(genre_id)
+    INNER JOIN buy_book USING(book_id)
+GROUP BY name_genre
+HAVING SUM(buy_book.amount) =
+     (
+       SELECT MAX(Количество) AS Максимальное_количество
+       FROM 
+       (
+        SELECT name_genre, SUM(buy_book.amount) AS Количество
+        FROM genre
+            INNER JOIN book USING(genre_id)
+            INNER JOIN buy_book USING(book_id)
+        GROUP BY name_genre
+       ) query_in
+     );
+
+*****
+
+10. Сравнить ежемесячную выручку от продажи книг за текущий и предыдущий годы. Для этого вывести год, месяц, сумму выручки в отсортированном сначала по возрастанию месяцев, затем по возрастанию лет виде. Название столбцов: Год, Месяц, Сумма.
+
+Ответ:
+
