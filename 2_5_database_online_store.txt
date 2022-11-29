@@ -15,3 +15,15 @@ SELECT * FROM client;
 
 Ответ:
 
+INSERT INTO buy (buy_description, client_id)
+SELECT 'Связаться со мной по вопросу доставки', client_id
+FROM client
+WHERE name_client LIKE 'Попов Илья';
+
+SELECT * FROM buy;
+
+3. В таблицу buy_book добавить заказ с номером 5. Этот заказ должен содержать книгу Пастернака «Лирика» в количестве двух экземпляров и книгу Булгакова «Белая гвардия» в одном экземпляре.
+
+Ответ:
+
+
