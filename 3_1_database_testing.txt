@@ -15,3 +15,19 @@ ORDER BY result DESC;
 
 Ответ: 
 
+SELECT name_subject,
+COUNT(attempt.subject_id) AS Количество,
+ROUND(AVG(result), 2) AS Среднее
+FROM subject
+     LEFT JOIN attempt USING(subject_id)
+GROUP BY name_subject
+ORDER BY 3 DESC;
+
+*****
+
+3. Вывести студентов (различных студентов), имеющих максимальные результаты попыток. Информацию отсортировать в алфавитном порядке по фамилии студента.
+
+Максимальный результат не обязательно будет 100%, поэтому явно это значение в запросе не задавать.
+
+Ответ: 
+
