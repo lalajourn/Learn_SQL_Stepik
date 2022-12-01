@@ -129,3 +129,17 @@ FROM subject
        LEFT JOIN answer USING(answer_id)
 GROUP BY name_subject, Вопрос
 ORDER BY name_subject ASC, Успешность DESC, Вопрос ASC;
+
+*****
+
+10. Вывести максимальную оценку студента по каждому предмету, а также вердикт Зачет/Незачет (если результат не менее 70%, то зачет). Если студент не сдавал предмет, оценка по нему будет 0. Результат отсортировать по имени студента и названию предмета.
+
+Ответ:
+
+SELECT name_student, name_subject,
+IF(result IS NULL, 0, result) AS Оценка,
+IF(result > 70, 'Зачёт', 'Незачёт') AS Результат
+FROM student 
+     CROSS JOIN subject
+     LEFT JOIN attempt USING(student_id, subject_id)
+ORDER BY 1, 2;
