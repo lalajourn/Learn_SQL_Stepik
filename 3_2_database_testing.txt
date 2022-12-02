@@ -15,3 +15,23 @@ SELECT * FROM attempt;
 
 Ответ:
 
+INSERT INTO testing (attempt_id, question_id)
+SELECT attempt_id, question_id
+FROM question
+     INNER JOIN attempt USING(subject_id)
+WHERE attempt_id = (SELECT MAX(attempt_id) 
+                    FROM attempt)
+ORDER BY RAND()
+LIMIT 3;
+
+SELECT * FROM testing;
+
+*****
+
+3. Студент прошел тестирование (то есть все его ответы занесены в таблицу testing), далее необходимо вычислить результат(запрос) и занести его в таблицу attempt для соответствующей попытки.  Результат попытки вычислить как количество правильных ответов, деленное на 3 (количество вопросов в каждой попытке) и умноженное на 100. Результат округлить до целого.
+
+ Будем считать, что мы знаем id попытки,  для которой вычисляется результат, в нашем случае это 8.
+ 
+ Ответ:
+ 
+ 
