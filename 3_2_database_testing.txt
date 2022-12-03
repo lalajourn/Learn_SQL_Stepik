@@ -30,8 +30,32 @@ SELECT * FROM testing;
 
 3. Студент прошел тестирование (то есть все его ответы занесены в таблицу testing), далее необходимо вычислить результат(запрос) и занести его в таблицу attempt для соответствующей попытки.  Результат попытки вычислить как количество правильных ответов, деленное на 3 (количество вопросов в каждой попытке) и умноженное на 100. Результат округлить до целого.
 
- Будем считать, что мы знаем id попытки,  для которой вычисляется результат, в нашем случае это 8.
+Будем считать, что мы знаем id попытки,  для которой вычисляется результат, в нашем случае это 8.
  
- Ответ:
+Ответ:
  
- 
+UPDATE attempt
+SET result = (
+    SELECT ROUND(SUM(is_correct / 3 * 100), 0)
+    FROM answer
+    INNER JOIN testing USING (answer_id)
+    WHERE attempt_id = 8)
+WHERE attempt_id = 8;
+
+SELECT * FROM attempt;
+
+*****
+
+4. Удалить из таблицы attempt все попытки, выполненные раньше 1 мая 2020 года. Также удалить и все соответствующие этим попыткам вопросы из таблицы testing, которая создавалась следующим запросом:
+
+CREATE TABLE testing (
+    testing_id INT PRIMARY KEY AUTO_INCREMENT, 
+    attempt_id INT, 
+    question_id INT, 
+    answer_id INT,
+    FOREIGN KEY (attempt_id)  REFERENCES attempt (attempt_id) ON DELETE CASCADE
+);
+
+Ответ:
+
+
