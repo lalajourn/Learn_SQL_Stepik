@@ -44,3 +44,16 @@ ORDER BY name_subject;
 
 Ответ:
 
+SELECT name_program
+FROM program
+    INNER JOIN program_subject USING (program_id)
+GROUP BY 1
+HAVING MIN(min_result) >= 40
+ORDER BY 1;
+
+*****
+
+5. Вывести образовательные программы, которые имеют самый большой план набора,  вместе с этой величиной.
+
+Ответ:
+
