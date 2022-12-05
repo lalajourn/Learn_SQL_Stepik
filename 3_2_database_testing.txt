@@ -63,3 +63,13 @@ WHERE date_attempt < '2020-05-01';
 
 SELECT * FROM attempt;
 SELECT * FROM testing;
+
+*****
+
+5. Добавить новый столбец в таблицу попыток сдачи Well_done и добавить подпись студентам, результат которых более 67 баллов - Супер_молодец, у кого результат =67 - Молодец. У остальных оставить пустые значения.
+
+Ответ:
+
+SELECT student_id, subject_id, date_attempt, result,
+IF(result > 67, 'Супер-молодец', IF(result = 67, 'Молодец', '')) AS well_done
+FROM attempt;
