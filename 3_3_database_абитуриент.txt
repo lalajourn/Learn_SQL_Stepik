@@ -143,3 +143,27 @@ WHERE result < min_result
 ORDER BY 1, 2;
 
 *****
+
+11. Вывести по каждому предмету: минимум, максимум, среднее и количество сдавших предмет.
+
+Необходимо учесть:
+
+1) Все названия на русском и начинаются с маленькой буквы используем функцию LOWER.
+
+2) Округление до целого числа.
+
+3) Использовать таблицы subject и enrollee_subject.
+
+4) Сортировать по убыванию среднего балла.
+
+Ответ:
+
+SELECT LOWER(name_subject) AS предмет, 
+ROUND(MIN(result), 0) AS минимум, 
+ROUND(MAX(result), 0) AS максимум, 
+ROUND(AVG(result), 0) AS среднее,
+COUNT(enrollee_id) AS количество
+FROM subject
+    INNER JOIN enrollee_subject USING (subject_id)
+GROUP BY name_subject
+ORDER BY среднее DESC;
