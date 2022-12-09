@@ -36,3 +36,21 @@ SELECT * FROM applicant;
 
 Ответ:
 
+UPDATE applicant
+    INNER JOIN (
+        SELECT enrollee_id, IF(SUM(achievement_id) IS NULL, 0, SUM(bonus)) AS points
+        FROM enrollee
+            LEFT JOIN enrollee_achievement USING(enrollee_id)
+            LEFT JOIN achievement USING(achievement_id)
+        GROUP BY enrollee_id
+        ) AS bonus USING (enrollee_id)
+SET itog = itog + points;
+
+SELECT * FROM applicant;
+
+*****
+
+4. Поскольку при добавлении дополнительных баллов, абитуриенты по каждой образовательной программе могут следовать не в порядке убывания суммарных баллов, необходимо создать новую таблицу applicant_order на основе таблицы applicant. При создании таблицы данные нужно отсортировать сначала по id образовательной программы, потом по убыванию итогового балла. А таблицу applicant, которая была создана как вспомогательная, необходимо удалить.
+
+Ответ:
+
