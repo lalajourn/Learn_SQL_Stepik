@@ -74,3 +74,8 @@ ALTER TABLE applicant_order ADD str_id INT FIRST;
 SELECT * FROM applicant_order;
 
 *****
+
+6. Занести в столбец str_id таблицы applicant_order нумерацию абитуриентов, которая начинается с 1 для каждой образовательной программы.
+
+Ответ:
+
