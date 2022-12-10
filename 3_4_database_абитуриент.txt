@@ -54,3 +54,13 @@ SELECT * FROM applicant;
 
 Ответ:
 
+CREATE TABLE applicant_order AS
+SELECT program_id, enrollee_id, itog
+FROM applicant
+ORDER BY 1 ASC, 3 DESC; 
+
+DROP TABLE applicant;
+
+SELECT * FROM applicant_order;
+
+*****
