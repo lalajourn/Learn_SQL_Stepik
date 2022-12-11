@@ -79,3 +79,13 @@ SELECT * FROM applicant_order;
 
 Ответ:
 
+SET @num_1 := 0;
+SET @num_2 := 1;
+
+UPDATE applicant_order
+SET str_id = IF(program_id = @num_1, @num_2 := @num_2 + 1, @num_2 := 1 AND @num_1 := @num_1 + 1);
+
+SELECT* FROM applicant_order;
+
+*****
+
