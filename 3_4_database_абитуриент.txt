@@ -105,7 +105,15 @@ SELECT * FROM student;
 
 *****
 
-8. Создать таблицу  im_in_the_army_now, в которую включить студентов, которые не смогли поступить ни на одну специальность. В таблицу включить фамилию и имя студента и его итоговый балл.
+8. Создать таблицу  in_the_army_now, в которую включить студентов, которые не смогли поступить ни на одну специальность. В таблицу включить фамилию и имя студента и его итоговый балл.
 
 Ответ:
 
+CREATE TABLE in_the_army_now AS 
+SELECT enrollee.name_enrollee, applicant_order.itog
+FROM enrollee
+     LEFT JOIN student ON enrollee.name_enrollee = student.name_enrollee
+     INNER JOIN applicant_order ON enrollee.enrollee_id = applicant_order.enrollee_id
+WHERE student.itog IS NULL;
+
+SELECT * FROM in_the_army_now;
