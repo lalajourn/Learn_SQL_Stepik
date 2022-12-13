@@ -26,3 +26,14 @@ ORDER BY 1, 2, 3;
 
 Ответ:
 
+INSERT INTO step_keyword (step_id, keyword_id)
+SELECT step_id, keyword_id
+FROM keyword
+    CROSS JOIN step
+WHERE INSTR(CONCAT(" ", step_name, " "), CONCAT(" ", keyword_name, " ")) > 0 OR INSTR(CONCAT(" ", step_name, " "), CONCAT(" ", keyword_name, ",")) > 0 OR INSTR(CONCAT(" ", step_name, " "), CONCAT(" ", keyword_name, "()"))
+ORDER BY keyword_id;
+
+SELECT * FROM step_keyword;
+
+*****
+
