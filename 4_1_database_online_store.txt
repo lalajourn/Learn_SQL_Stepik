@@ -18,3 +18,8 @@ ORDER BY beg_range;
 
 Ответ:
 
+SELECT book_id, title, author, price, amount
+FROM book
+ORDER BY length(title) ASC;
+
+*****
