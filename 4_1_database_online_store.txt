@@ -3,7 +3,6 @@
 
 Ответ:
 
-<<<<<<< HEAD
 SELECT beg_range, end_range, 
 ROUND (AVG(price), 2) AS Средняя_цена, 
 ROUND (SUM(amount * price), 2) AS Стоимость, 
@@ -14,6 +13,8 @@ GROUP BY beg_range, end_range
 ORDER BY beg_range;
 
 *****
-=======
-*****
->>>>>>> 2315d27a2f20edb8924753e91a4e3f9ab3273184
+
+2. Вывести всю информацию из таблицы book, упорядоченную по возрастанию длины названия книги.
+
+Ответ:
+
