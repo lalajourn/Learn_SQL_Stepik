@@ -18,3 +18,17 @@ ORDER BY price DESC;
 
 Ответ:
 
+SELECT name_genre, SUM(buy_book.amount) AS Количество
+FROM genre 
+     INNER JOIN book USING (genre_id)
+     INNER JOIN buy_book USING (book_id)
+GROUP BY name_genre
+HAVING SUM(buy_book.amount) > 1 AND SUM(buy_book.amount) IN(
+    SELECT MIN(temp_2) FROM
+    (SELECT SUM(buy_book.amount) AS temp_2 FROM buy_book
+     INNER JOIN book USING (book_id)
+     GROUP BY genre_id) temp
+    );
+    
+*****
+
