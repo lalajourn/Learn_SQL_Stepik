@@ -36,3 +36,24 @@ HAVING SUM(buy_book.amount) > 1 AND SUM(buy_book.amount) IN(
 
 Ответ:
 
+CREATE TABLE store AS
+SELECT title, author, MAX(price) AS price,
+SUM(amount) AS amount
+FROM (
+    SELECT title, author, price, amount
+    FROM book
+    UNION ALL
+    SELECT title, author, price, amount
+    FROM supply) AS temp
+GROUP BY title, author
+HAVING amount > (SELECT ROUND(SUM(amount) / COUNT(title), 2)
+    FROM (SELECT title, amount
+          FROM book 
+          UNION 
+          SELECT title, amount
+          FROM supply) AS temp1)
+ORDER BY author ASC, price DESC;
+
+SELECT * FROM store;
+
+*****
