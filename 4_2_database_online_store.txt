@@ -63,6 +63,11 @@ SELECT * FROM store;
 
 Ответ:
 
-
+SELECT author, title,
+IF(price < 500, 'низкая', IF(price > 700, 'высокая', 'средняя')) AS price_category,
+price * amount AS cost
+FROM book
+WHERE author <> 'Есенин С.А.' AND title <> 'Белая гвардия' 
+ORDER BY 4 DESC, 2;
 
 *****
