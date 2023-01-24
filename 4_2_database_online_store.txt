@@ -76,3 +76,11 @@ ORDER BY 4 DESC, 2;
 
 Ответ:
 
+SELECT title, author, amount,
+(SELECT MAX(price * amount) FROM book) - price * amount AS Разница_с_макс_стоимостью
+FROM book
+WHERE amount % 2 = 1
+ORDER BY 4 DESC;
+
+*****
+
