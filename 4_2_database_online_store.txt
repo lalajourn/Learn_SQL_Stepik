@@ -105,3 +105,9 @@ ORDER BY 2 DESC;
 
 Ответ: 
 
+SELECT author, title, amount, price,
+IF(amount >= 5, '50%', IF(price >= 700, '20%', '10%')) AS Скидка,
+ROUND(price - IF(amount >= 5, price * 0.5, IF(price >= 700, price * 0.2, price * 0.1)), 2) AS Цена_со_скидкой
+FROM book;
+
+*****
