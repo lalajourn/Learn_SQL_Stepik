@@ -2,3 +2,11 @@
 
 Ответ:
 
+SELECT author, title,
+FLOOR(price) AS Рубли,
+ROUND((price % 1) * 100) AS Копейки
+FROM book
+ORDER BY 4 DESC;
+
+*****
+
