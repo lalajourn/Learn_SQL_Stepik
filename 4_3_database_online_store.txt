@@ -21,3 +21,19 @@ ORDER BY 4 DESC;
 
 Ответ:
 
+SELECT CONCAT('Графоман и ', author) AS Автор,
+CONCAT(title, '. Краткое содержание.') AS Название,
+IF(price * 0.4 > 250, 250, price * 0.4) AS Цена,
+IF(amount <= 3, 'высокий', IF(amount <= 10, 'средний', 'низкий')) AS Спрос,
+IF(amount <= 2, 'очень мало', IF(amount < 15, 'в наличии', 'много')) AS Наличие
+FROM book
+ORDER BY Цена, 
+    CASE Спрос
+        WHEN 'высокий' THEN 1
+        WHEN 'средний' THEN 2
+        ELSE 3
+    END,
+    Название;
+    
+*****
+
