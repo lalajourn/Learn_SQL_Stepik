@@ -59,3 +59,11 @@ ORDER BY 1;
 
 Ответ:
 
+SELECT author, title, price, amount,
+ROUND((price * amount / (SUM(price * amount) over())) * 100, 2) AS income_percent
+FROM book
+GROUP BY author, title, price, amount
+ORDER BY income_percent DESC;
+
+*****
+
