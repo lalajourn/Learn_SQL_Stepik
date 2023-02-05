@@ -100,3 +100,10 @@ ORDER BY 1, 2;
 
 Ответ:
 
+SELECT author AS Автор, MIN(amount) AS Наименьшее_кол_во, MAX(amount) AS Наибольшее_кол_во
+FROM book
+GROUP BY author
+HAVING SUM(amount) < 10;
+
+*****
+
