@@ -111,3 +111,20 @@ HAVING SUM(amount) < 10;
 
 Ответ:
 
+INSERT INTO buy_book (book_id, amount, buy_id)
+SELECT book_id, 1,
+ (SELECT buy_id FROM buy
+  WHERE client_id = 
+ (SELECT client_id FROM client 
+  WHERE name_client LIKE 'Баранов%')
+  ORDER BY buy_id DESC
+  LIMIT 1) AS id
+FROM book
+WHERE author_id = 
+ (SELECT author_id 
+  FROM author 
+  WHERE name_author LIKE 'Достоевский%');
+
+SELECT * FROM buy_book;
+
+*****
