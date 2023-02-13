@@ -4,5 +4,19 @@
 
 Ответ:
 
+WITH ful_table AS (
+    SELECT name_subject, name_question, SUM(is_correct) / COUNT(is_correct) AS отно_Сложность
+    FROM subject JOIN question
+    USING(subject_id) JOIN testing
+    USING(question_id) JOIN answer
+    USING(answer_id)
+    GROUP BY name_subject, name_question)
+SELECT name_subject,name_question,
+    CASE WHEN отно_Сложность = ( SELECT MAX(отно_Сложность) FROM ful_table)
+         THEN 'самый легкий'
+         ELSE 'самый сложный' END AS Сложность
+FROM ful_table
+WHERE отно_Сложность = ( SELECT MAX(отно_Сложность) FROM ful_table) OR отно_Сложность = ( SELECT MIN(отно_Сложность) FROM ful_table)
+ORDER BY отно_Сложность DESC;
 
 *****
